@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import router from './router'
 
+
 Vue.use(Vuex)
 let api = axios.create({
   baseURL: 'https://battlecardz.herokuapp.com/api/games',
@@ -51,6 +52,8 @@ export default new Vuex.Store({
         .then(res => {
           console.log(res.data.game)
           commit('setGame', res.data.game)
+          commit('setOpponentCard', {})
+          commit('setPlayerCard', {})
         })
         .catch(err => console.log('cannot play game'))
     },

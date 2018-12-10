@@ -1,27 +1,30 @@
 <template>
   <div class="">
-    <h5 class="col-12">{{role.name}}</h5>
-    <div v-if="isPlayer" class="row bg-primary justify-content-center">
+    <div class="row">
+      <h3 class="col-6 name">{{role.name}}</h3>
+      <h5 class="col-4 offset-2">Remaining Cards: {{role.remainingCards}}</h5>
+    </div>
+    <div v-if="isPlayer" class="row bg-transparent justify-content-center">
       <div v-for="card in role.hand" @click="setPlayerCard(card)" class="col-2 card m-1">
         <img :src="card.img" class="card-img" />
-        <p>{{card.name}}</p>
+        <p class="name">{{card.name}}</p>
         <p>Attack: {{card.attack}}</p>
         <p>Health: {{card.health}}</p>
         <p>Defense: {{card.defense}}</p>
       </div>
     </div>
     <!-- OPPONENT'S HAND -->
-    <div v-else class="row bg-warning justify-content-center">
+    <div v-else class="row bg-transparent justify-content-center">
       <div v-for="card in role.hand" @click="setOpponentCard(card)" class="col-2 card m-1">
-        <div v-if="card.visible" class="card">
+        <div v-if="card.visible" class="">
           <img :src="card.img" class="card-img" />
-          <p>{{card.name}}</p>
+          <p class="name">{{card.name}}</p>
           <p>Attack: {{card.attack}}</p>
           <p>Health: {{card.health}}</p>
           <p>Defense: {{card.defense}}</p>
         </div>
-        <div v-else class="card">
-          <img src='http://www.hearthstonetopdecks.com/wp-content/uploads/2014/06/card-back-ragnaros.png' class="card-back" />
+        <div v-else class="card-back card-img">
+          <h3 class="font-weight-bold my-5 py-5">Battle Cards</h3>
         </div>
       </div>
 
@@ -58,5 +61,18 @@
 </script>
 
 <style scoped>
-  .card {}
+  div>p {
+    line-height: 1em;
+    margin-bottom: 2px;
+  }
+
+  h3.name {
+    font-weight: 900;
+    font-family: 'Cinzel', serif;
+  }
+
+  p.name {
+    margin-bottom: 1em;
+    font-weight: 900;
+  }
 </style>
