@@ -4,6 +4,7 @@
     <div class="row">
       <div v-if="!game.winner" class="col-12 game-play">
         <div @click="attack()" :class="{'attack-ready':ready()}" class="attack-button">
+          <p>Attack</p>
           <img src='../assets/punch-white.svg' height="70px">
         </div>
         <p>Opponent Card: {{opponentCard.name}}</p>
@@ -69,7 +70,11 @@
   }
 
 </script>
-
+<style scoped>
+  div>p {
+    margin-bottom: 0em;
+  }
+</style>
 <style>
   body {
     background-color: rgb(111, 111, 111);
@@ -77,7 +82,6 @@
 
   .attack-button {
     position: relative;
-    height: 75px;
     margin: 10px;
     display: inline-block;
     width: 100px;
