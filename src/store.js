@@ -28,9 +28,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    // create new game No Name, No card set
-    startGame({ commit }) {
-      api.post('')
+    // create new game with Name, No card set
+    startGame({ commit }, gameConfig) {
+      api.post('', gameConfig)
         .then(res => {
           console.log('new Game:', res.data)
           commit('setGame', res.data)

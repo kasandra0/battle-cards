@@ -5,7 +5,7 @@
       <h5 class="col-4 offset-2">Remaining Cards: {{role.remainingCards}}</h5>
     </div>
     <div v-if="isPlayer" class="row bg-transparent justify-content-center">
-      <div v-for="card in role.hand" @click="setPlayerCard(card)" class="col-2 card m-1">
+      <div v-for="card in role.hand" @click="setPlayerCard(card)" :class="{'chosen-card': isChosen(card)}" class="col-2 card m-1">
         <img :src="card.img" class="card-img" />
         <p class="name">{{card.name}}</p>
         <p>Attack: {{card.attack}}</p>
@@ -15,7 +15,7 @@
     </div>
     <!-- OPPONENT'S HAND -->
     <div v-else class="row bg-transparent justify-content-center">
-      <div v-for="card in role.hand" @click="setOpponentCard(card)" class="col-2 card m-1">
+      <div v-for="card in role.hand" @click="setOpponentCard(card)" :class="{'chosen-card': isChosen(card)}" class="col-2 card m-1">
         <div v-if="card.visible" class="">
           <img :src="card.img" class="card-img" />
           <p class="name">{{card.name}}</p>
@@ -44,8 +44,11 @@
       }
     },
     computed: {
-      chosenCard() {
-
+      playerCard() {
+        return this.$store.state.playerCard
+      },
+      opponentCard() {
+        return this.$store.state.opponentCard
       }
     },
     methods: {
@@ -54,6 +57,9 @@
       },
       setPlayerCard(card) {
         this.$store.dispatch('setPlayerCard', card)
+      },
+      isChosen(card) {
+        return (card == this.playerCard) || (card == this.opponentCard)
       }
     }
   }

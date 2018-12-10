@@ -115,6 +115,12 @@
     background-color: rgb(240, 152, 21)
   }
 
+  .chosen-card {
+    border-style: solid;
+    border-width: 5px;
+    border-color: rgb(3, 49, 233);
+  }
+
   .game-play {
     padding-top: 20px;
   }
